@@ -13,7 +13,7 @@ import (
 
 func main(){
 
-	config := flag.String("config","","toml file path")
+	config := flag.String("config","","toml file path without the file name. if the file is in the current folder the path as ./")
 	flag.Parse()
 
 	if *config == ""{
