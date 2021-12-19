@@ -46,12 +46,12 @@ func main(){
         fmt.Printf("error %s\n", err)
         return
     }
-	token,err := createToken()
+	/*token,err := createToken()
 	if err != nil {
         fmt.Printf("error %s\n", err)
         return
     }
-    req.Header.Add("Authorization", `Bearer `+token)
+    req.Header.Add("Authorization", `Bearer `+token)*/
     resp, err := c.Do(req)
     if err != nil {
         fmt.Printf("error %s\n", err)

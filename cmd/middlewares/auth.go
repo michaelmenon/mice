@@ -44,9 +44,15 @@ func validateJWT(tokenString string)(Claims,error){
 //do auth if its set in the toml file
 func DoAuth(c *gin.Context)(Claims,error){
 
-	token := strings.Split(c.Request.Header["Authorization"][0], " ")[1]
+	val := c.Request.Header.Values("Authorization")
+	if len(val) ==0{
+		return nil,fmt.Errorf("Authorization Bearer token not found")
+
+	}
+	token := strings.Split(val[0], " ")[1]
 	if token == ""{
 		return nil,fmt.Errorf("Authorization Bearer token not found")
 	}
 	return validateJWT(token)
+	
 }
