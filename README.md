@@ -9,9 +9,15 @@ A simple API Gateway in Golang.
 
 
 Installation:
-1) First install Go
-2) go get github.com/michaelmenon/mice
-3) go install github.com/michaelmenon/mice@latest
+Using go install:
+  1) First install Go, if not already there
+  2) Set GOPATH and GOBIN if not already set as in step #3, if already set skipe to step#8
+  3) mkdir $HOME/go
+  4) mkdir $HOME/go/bin
+  5) echo GOPATH=$HOME/go
+  7) echo GOPATH=$HOME/go/bin
+  8) go get github.com/michaelmenon/mice
+  9) go install github.com/michaelmenon/mice@latest
 
 Copy the sample TOML config file provided in the github repo to the path from you are going to run the mice gasteway. Open the terminal and go the the path where you have copied thr toml file and run the mice with this command : mice -config=./
 
