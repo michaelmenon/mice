@@ -1,6 +1,9 @@
 # mice
 A simple API Gateway in Golang.
 
+![mice](https://user-images.githubusercontent.com/5271064/146664348-ccf4a57f-10e8-492e-a2c1-b0ad35bce778.jpg)
+
+
 Installation:
 1) First install Go
 2) go get github.com/michaelmenon/mice
@@ -35,6 +38,7 @@ It has the following features:
 
 
 Sample TOML file : 
+<img width="682" alt="Screen Shot 2021-12-18 at 11 54 35 PM" src="https://user-images.githubusercontent.com/5271064/146664378-2c70fd31-f552-4da0-a4e2-55b46caa588b.png">
 
-<img width="532" alt="Screen Shot 2021-12-18 at 11 42 47 PM" src="https://user-images.githubusercontent.com/5271064/146664150-214ceca6-e55d-48f3-9b7d-7074b040c355.png">
+
 
