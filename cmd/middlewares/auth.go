@@ -21,6 +21,9 @@ func validateJWT(tokenString string)(Claims,error){
 
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
 		secret := os.Getenv(viper.GetString("config.authenv"))
+		if secret == ""{
+			return nil, fmt.Errorf("no JWT secret set in the env variable %s",viper.GetString("config.authenv"))
+		}
 		return []byte(secret), nil
 	})
 	if err!=nil{
