@@ -15,7 +15,7 @@ func main(){
 	flag.Parse()
 
 	if *config == ""{
-		_ = fmt.Errorf("no toml file path specified\n",)
+		fmt.Println("no toml file path specified",)
 		os.Exit(1)
 	}
 	gin.SetMode(gin.ReleaseMode)
@@ -24,7 +24,7 @@ func main(){
 	//register proxies from the TOML file
 	err := router.RegisterProxies(gr,*config)
 	if err!=nil{
-		_ = fmt.Errorf("error registering the proxies from toml: %v\n",err)
+		fmt.Printf("error registering the proxies from toml: %v\n",err)
 		os.Exit(1)
 	}
 	
