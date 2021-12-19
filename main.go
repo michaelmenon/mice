@@ -11,9 +11,13 @@ import (
 
 func main(){
 
-	config := flag.String("config",".","toml file path")
+	config := flag.String("config","","toml file path")
 	flag.Parse()
 
+	if *config == ""{
+		_ = fmt.Errorf("no toml file path specified\n",)
+		os.Exit(1)
+	}
 	gin.SetMode(gin.ReleaseMode)
     gr := gin.Default()
 
