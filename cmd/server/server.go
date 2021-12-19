@@ -1,15 +1,16 @@
 package server
 
-import(
+import (
 	"flag"
 	"fmt"
 	"log"
-	"mice/cmd/proxy"
 	"mice/cmd/constants"
+	"mice/cmd/proxy"
 	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/michaelmenon/mice/cmd/constants"
 	"github.com/spf13/viper"
 )
 
@@ -29,7 +30,7 @@ func Run(){
 
 		// your custom format
 		return fmt.Sprintf("%s[%s] \"%s %s %s %d %s \"%s\" %s\"\n",
-				constants.MICEERR,
+				constants.MICEINFO,
 				param.TimeStamp.Format(time.RFC1123),
 				param.Method,
 				param.Path,
