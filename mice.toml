@@ -1,0 +1,16 @@
+[gateway]
+ip="localhost"
+port="8000"
+
+[server.1]
+role="/c1"
+addr=["http://localhost:8080","http://localhost:8081"]
+
+[config]
+ratelimit=true
+ratecount=5
+doauth=true
+authenv="mysecret"
+tls=true
+cert="localhost.crt"
+key="localhost.key"
