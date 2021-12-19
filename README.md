@@ -3,7 +3,8 @@ A simple API Gateway in Golang.
 
 Installation:
 1) First install Go
-2) go install github.com/michaelmenon/mice
+2) go get github.com/michaelmenon/mice
+3) go install github.com/michaelmenon/mice
 
 Copy the sample TOML config file provided in the github repo.
 
