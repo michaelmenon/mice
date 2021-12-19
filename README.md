@@ -19,7 +19,7 @@ If you want Gateway to run over tls,place the tls certificate and key to the sam
 
 It has the following features:
 
-1) Do reverse proxy to the servers provided in the TOML file:
+1) Does reverse proxy to the servers provided in the TOML file:
   For eg: 
   
   [server.1]
@@ -33,11 +33,11 @@ It has the following features:
   Here we have defined 2 servers to be proxied based on the path mentioned in the "role"
   Each server has multiple  instances as mentioned in the array "addr". Mice will do round robin load balancing to the multiple instances in the array.
   
-2) Do load balancing to the server if the server has multiple instances provided in the "addr" tag.
-3) Do health check for each server instance and log if any server is down
+2) Does load balancing to the server if the server has multiple instances provided in the "addr" tag.
+3) Does health check for each server instance and log if any server is down
 4) Do logging 
-5) Support Authentication Bearer Token if the "doauth" flag is set to true. If its set to true then it will check for the JWT secret key in the env variable set with the name in the tag "authenv". If there are any claims Mice will collect that and pass it in the request headers to the corresponding proxies.
-6) Do rate limiting if the tag "ratelimit" is set to true. Mention the rate limit count in the tag "ratecount"
+5) Supports Authentication Bearer Token if the "doauth" flag is set to true. If its set to true then it will check for the JWT secret key in the env variable set with the name in the tag "authenv". If there are any claims Mice will collect that and pass it in the request headers to the corresponding proxies.
+6) Does rate limiting if the tag "ratelimit" is set to true. Mention the rate limit count in the tag "ratecount"
 7) Support TLS if you set the flag "tls" to true and set the "cert" key to the certificate file path and "key" tag to the key file path.
 
 
