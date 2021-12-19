@@ -36,9 +36,13 @@ It has the following features:
 2) Does load balancing to the server if the server has multiple instances provided in the "addr" tag.
 3) Does health check for each server instance and log if any server is down
 4) Does logging 
-5) Supports Authentication Bearer Token if the "doauth" flag is set to true. If its set to true then it will check for the JWT secret key in the env variable set with the name in the tag "authenv". If there are any claims Mice will collect that and pass it in the request headers to the corresponding proxies.
-6) Does rate limiting if the tag "ratelimit" is set to true. Mention the rate limit count in the tag "ratecount"
-7) Support TLS if you set the flag "tls" to true and set the "cert" key to the certificate file path and "key" tag to the key file path.
+5) Supports Authentication Bearer Token if the "doauth" flag is set to true. If its set to true then it will check for the JWT secret key in the env variable set with the name in the tag "authenv". 
+If there are any claims Mice will collect that and pass it in the request headers to the corresponding proxies.
+Only standard claims are supported as give below :
+<img width="397" alt="Screen Shot 2021-12-19 at 9 37 12 AM" src="https://user-images.githubusercontent.com/5271064/146678829-4df4e3cd-ed98-497d-b3f9-676d00ce5c38.png">
+
+7) Does rate limiting if the tag "ratelimit" is set to true. Mention the rate limit count in the tag "ratecount"
+8) Support TLS if you set the flag "tls" to true and set the "cert" key to the certificate file path and "key" tag to the key file path.
 
 
 Sample TOML file : 
