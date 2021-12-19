@@ -15,7 +15,7 @@ func main(){
 	flag.Parse()
 
 	if *config == ""{
-		fmt.Println("no toml file path specified",)
+		fmt.Println("Mice [ERR]:No toml file path specified. Run mice -h for details.",)
 		os.Exit(1)
 	}
 	gin.SetMode(gin.ReleaseMode)
@@ -24,7 +24,7 @@ func main(){
 	//register proxies from the TOML file
 	err := router.RegisterProxies(gr,*config)
 	if err!=nil{
-		fmt.Printf("error registering the proxies from toml: %v\n",err)
+		fmt.Printf("Mice [ERR]:Error registering the proxies from toml: %v\n",err)
 		os.Exit(1)
 	}
 	
@@ -33,10 +33,10 @@ func main(){
 	addr := fmt.Sprintf("%s:%s",server["ip"],server["port"])
 	
 	if viper.GetBool("config.tls"){
-		fmt.Printf("Running the Mice Gateway over TLS on => %s\n",addr)
+		fmt.Printf("Mice [INFO]:Running the Mice Gateway over TLS on => %s\n",addr)
 		gr.RunTLS(addr,viper.GetString("config.cert"),viper.GetString("config.key"))
 	}else{
-		fmt.Printf("Running the Mice Gateway on => %s\n",addr)
+		fmt.Printf("Mice [INFO]:Running the Mice Gateway on => %s\n",addr)
 		gr.Run(addr)
 	}
 
