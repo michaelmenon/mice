@@ -1,4 +1,4 @@
-module mice
+module github.com/michaelmenon/mice
 
 go 1.16
 
