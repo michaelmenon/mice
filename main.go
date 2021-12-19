@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"flag"
 	"mice/router"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -10,11 +11,14 @@ import (
 
 func main(){
 
+	config := flag.String("config",".","toml file path")
+	flag.Parse()
+
 	gin.SetMode(gin.ReleaseMode)
     gr := gin.Default()
 
 	//register proxies from the TOML file
-	err := router.RegisterProxies(gr)
+	err := router.RegisterProxies(gr,*config)
 	if err!=nil{
 		_ = fmt.Errorf("error registering the proxies from toml: %v\n",err)
 		os.Exit(1)

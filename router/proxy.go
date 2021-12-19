@@ -15,9 +15,9 @@ import (
 )
 
 //RegisterProxies ... register the proxies
-func RegisterProxies(r *gin.Engine)error{
+func RegisterProxies(r *gin.Engine,configfilepath string)error{
 	viper.SetConfigFile("mice.toml")
-	viper.AddConfigPath(".")
+	viper.AddConfigPath(configfilepath)
 	if err := viper.ReadInConfig(); err != nil {
 		return err
 	}
