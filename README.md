@@ -11,6 +11,8 @@ It has the following features:
 
 1) Do reverse proxy to the servers provided in the TOML file:
   For eg: 
+  
+  
   [server.1]
   role="/c1"
   addr=["http://localhost:8080","http://localhost:8081"]
