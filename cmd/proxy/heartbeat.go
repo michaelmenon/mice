@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"mice/cmd/constants"
 )
 
 //RunHealthCheck start health checking routine for the registered proxies
@@ -29,7 +30,7 @@ func dialServer(){
 			ip := u.u.Host
 			c,err := net.Dial("tcp",ip,)
 			if err!=nil{
-				fmt.Printf("server with address %s is down\n",ip)
+				fmt.Printf("%sserver with address %s is down\n",constants.MICEERR,ip)
 				u.up = false
 			}else{
 				u.up = true

@@ -9,7 +9,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"strings"
-
+	"mice/cmd/constants"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	
@@ -53,11 +53,11 @@ func loadMiddlewares(r *gin.Engine){
 
 	for path := range proxies{ 
 		if !strings.HasPrefix(path,"/"){
-			fmt.Printf("Mice:[ERR]::Path %s does not begin with forward slash, so will not be added for routing\n",path)
+			fmt.Printf("%sPath %s does not begin with forward slash, so will not be added for routing\n",constants.MICEERR,path)
 			continue
 		}
 		if strings.Count(path,"/") > 1{
-			fmt.Printf("Mice:[ERR]::Path %s has more than one forward slash, so will not be added for routing\n",path)
+			fmt.Printf("%sPath %s has more than one forward slash, so will not be added for routing\n",constants.MICEERR,path)
 			continue
 		}
 		r.Any(path+"/*any",runProxy)
@@ -76,7 +76,7 @@ func setProxy(){
 		for _,addr := range addrs{ 
 			rm, err := url.Parse(addr)
 			if err != nil {
-				fmt.Printf("error parsing remote server %s with error %v",addr,err)
+				fmt.Printf("%serror parsing remote server %s with error %v",constants.MICEERR,addr,err)
 				continue
 			}
 			remote = append(remote,&server{u:rm,up: true})

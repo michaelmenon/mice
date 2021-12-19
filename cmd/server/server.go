@@ -5,7 +5,9 @@ import(
 	"fmt"
 	"log"
 	"mice/cmd/proxy"
+	"mice/cmd/constants"
 	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -16,16 +18,33 @@ func Run(){
 	flag.Parse()
 
 	if *config == ""{
-		fmt.Println("Mice [ERR]:No toml file path specified. Run mice -h for details.",)
+		fmt.Printf("%sNo toml file path specified. Run mice -h for details.",constants.MICEERR)
 		os.Exit(1)
 	}
 	gin.SetMode(gin.ReleaseMode)
-    gr := gin.Default()
+    gr := gin.New()
+	// LoggerWithFormatter middleware will write the logs to gin.DefaultWriter
+	// By default gin.DefaultWriter = os.Stdout
+	gr.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 
+		// your custom format
+		return fmt.Sprintf("%s[%s] \"%s %s %s %d %s \"%s\" %s\"\n",
+				constants.MICEERR,
+				param.TimeStamp.Format(time.RFC1123),
+				param.Method,
+				param.Path,
+				param.Request.Proto,
+				param.StatusCode,
+				param.Latency,
+				param.Request.UserAgent(),
+				param.ErrorMessage,
+		)
+	}))
+	gr.Use(gin.Recovery())
 	//register proxies from the TOML file
 	err := proxy.RegisterProxies(gr,*config)
 	if err!=nil{
-		fmt.Printf("Mice [ERR]:Error registering the proxies from toml: %v\n",err)
+		fmt.Printf("Mice -[ERR]::Error registering the proxies from toml: %v\n",err)
 		os.Exit(1)
 	}
 	
@@ -35,10 +54,10 @@ func Run(){
 	
 	if viper.GetBool("config.tls"){
 
-		fmt.Printf("Mice [INFO]:Running the Mice Gateway over TLS on => %s\n",addr)
+		fmt.Printf("%sRunning the Mice Gateway over TLS on => %s\n",constants.MICEINFO,addr)
 		log.Fatal(gr.RunTLS(addr,viper.GetString("config.cert"),viper.GetString("config.key")))
 	}else{
-		fmt.Printf("Mice [INFO]:Running the Mice Gateway on => %s\n",addr)
+		fmt.Printf("%sRunning the Mice Gateway on => %s\n",constants.MICEINFO,addr)
 		log.Fatal(gr.Run(addr))
 	}
 }

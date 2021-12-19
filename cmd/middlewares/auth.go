@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"mice/cmd/constants"
 	"strings"
 )
 
@@ -16,13 +17,13 @@ func validateJWT(tokenString string)(Claims,error){
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("%sUnexpected signing method: %v",constants.MICEERR, token.Header["alg"])
 		}
 
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
 		secret := os.Getenv(viper.GetString("config.authenv"))
 		if secret == ""{
-			return nil, fmt.Errorf("no JWT secret set in the env variable %s",viper.GetString("config.authenv"))
+			return nil, fmt.Errorf("%sno JWT secret set in the env variable %s",constants.MICEERR,viper.GetString("config.authenv"))
 		}
 		return []byte(secret), nil
 	})
@@ -49,12 +50,12 @@ func DoAuth(c *gin.Context)(Claims,error){
 
 	val := c.Request.Header.Values("Authorization")
 	if len(val) ==0{
-		return nil,fmt.Errorf("Authorization Bearer token not found")
+		return nil,fmt.Errorf("%sAuthorization Bearer token not found",constants.MICEERR)
 
 	}
 	token := strings.Split(val[0], " ")[1]
 	if token == ""{
-		return nil,fmt.Errorf("Authorization Bearer token not found")
+		return nil,fmt.Errorf("%sAuthorization Bearer token not found",constants.MICEERR)
 	}
 	return validateJWT(token)
 	
