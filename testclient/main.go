@@ -41,7 +41,7 @@ func main(){
 		TLSClientConfig: &tls.Config{InsecureSkipVerify : true},
 	}
 	c := &http.Client{Transport: tr}
-    req, err := http.NewRequest("GET", "https://localhost:8000/c1/p1/midhun", nil)
+    req, err := http.NewRequest("GET", "https://localhost:8000/c1/p1/sam", nil)
     if err != nil {
         fmt.Printf("error %s\n", err)
         return
