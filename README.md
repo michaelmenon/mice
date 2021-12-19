@@ -15,7 +15,7 @@ Installation:
 
 Copy the sample TOML config file provided in the github repo to the path from you are going to run the mice gasteway. Open the terminal and go the the path where you have copied thr toml file and run the mice with this command : mice -config=./
 
-Place the tls certificate and key to the same folder where the toml file is and you need to provide the file path for the cert and key in the toml.
+If you want Gateway to run over tls,place the tls certificate and key to the same folder where the toml file is and you need to provide the file path for the cert and key in the toml.
 
 It has the following features:
 
