@@ -57,7 +57,7 @@ func loadMiddlewares(r *gin.Engine){
 			continue
 		}
 		if strings.Count(path,"/") > 1{
-			fmt.Printf("Mice:[ERR]::,Path %s has more than one forward slash, so will not be added for routing\n",path)
+			fmt.Printf("Mice:[ERR]::Path %s has more than one forward slash, so will not be added for routing\n",path)
 			continue
 		}
 		r.Any(path+"/*any",runProxy)
