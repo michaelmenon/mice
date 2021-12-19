@@ -14,8 +14,8 @@ Using go install:
   2) Set GOPATH and GOBIN if not already set as in step #3, if already set skipe to step#8
   3) mkdir $HOME/go
   4) mkdir $HOME/go/bin
-  5) echo GOPATH=$HOME/go
-  7) echo GOPATH=$HOME/go/bin
+  5) export GOPATH=$HOME/go
+  7) export GOPATH=$HOME/go/bin
   8) go get github.com/michaelmenon/mice
   9) go install github.com/michaelmenon/mice@latest
 
